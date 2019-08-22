@@ -1,0 +1,347 @@
+<html>
+    <head>
+        <style>
+            @font-face {
+                font-family: "nintendo";
+                src: url("/fonts/SNES-italic.woff");
+            }
+            
+            
+            html{
+                background: url('movingcar.gif') no-repeat center center fixed;
+                -webkit-background-size:cover;
+                -moz-background-size:cover;
+                -o-background-size:cover;
+                background-size:cover;
+                height:auto;
+            }
+            
+            #NavBar{
+                height: 60px;
+                margin: 0 auto;
+                display: block;
+            }
+            
+            #Leaderboards{
+                float: left;
+                display: inline-block;
+                margin: 0 auto;
+            }
+            #Leaderboards input[type = "submit"]{
+                font-family: "nintendo";
+                background-color: Transparent;
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;    
+            }
+            
+            #Words{
+                float: left;
+                display: inline-block;
+            }
+            #Words input[type="submit"]{
+                font-family: "nintendo";
+                background-color: Transparent;
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;
+            }
+            
+            #Users{
+                float: left;
+                display: inline-block;
+            }
+            #Users input[type="submit"]{
+                font-family: "nintendo";
+                background-color: Transparent;
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;
+            }
+            
+            #Logout{
+                float: right;
+            }
+            #Logout input[type= "submit"]{
+                font-family: "nintendo";
+                background-color: Transparent;
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;
+            }
+            
+
+            #DifficultyButton input[type = "button"]{
+                font-family: "nintendo";
+                font-size: 30px;
+                padding : 20px 28px;
+                opacity: 0.8;
+            }
+            #DifficultyButton input[type = "submit"]{
+                font-family: "nintendo";
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 20px 28px;
+            }
+            
+            #inputDiv{
+                width:100%;
+                text-align:right;
+            }
+            
+            #AddWords input[type="text"]{
+                outline: none;
+                font-size: 18px;
+                border-color: transparent;
+                padding: 8px 19px;
+                border-width: 2px;
+                border-color: black;
+            }
+            
+            #AddWords input[type = "button"]{
+                background-color: Transparent;
+                font-family: "nintendo";
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;
+                transition: all 0.5s;
+                cursor: pointer;
+            }
+            
+            #AddWords input[type="submit"]{
+                font-family: "nintendo";
+                background-color: Transparent;
+                outline: none;
+                font-size: 30px;
+                border-color: transparent;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;   
+            }
+            
+            #space{
+                height: 30px;
+            }
+                
+            #UserDashboard{
+                display: block;
+                width: 100%;
+                overflow:auto;
+            }
+            
+            #Users input[type = "submit"]{
+                font-family: "nintendo";
+                outline: none;
+                font-size: 30px;
+                margin: 0 auto;
+            }
+            
+            #User input[type="submit"]{
+                font-family: "nintendo";
+                background-color: red;
+                outline: none;
+                font-size: 30px;
+                border-color: red;
+                font-weight: bold;
+                padding: 12px 28px;
+                color: white;
+            }
+            
+            p1{
+                font-family: "nintendo";
+                font-size: 30px;
+                font-weight: bolder;
+                padding: 12px 28px;
+                color: white;
+            }
+            
+            th{
+                font-family: "nintendo";
+                color: white;
+                padding: 5px;
+                font-size: 40px;
+                text-align: center;
+                background-color:blue;
+                
+            }
+            
+            td{
+                font-family: "nintendo";
+                font-size: 25px;
+                background-color:beige;
+                text-align: center;
+                
+            }
+            thead{
+                display:block;
+                width:100%;
+            }
+            tbody{
+                height:400px;
+                display:inline-block;
+                overflow: auto;
+            }
+        </style>
+        
+        <script>
+            function changeEasy(){
+                const str2 = document.getElementById("difficulty")
+                document.getElementById("easy").style.color = "green"
+                document.getElementById("medium").style.color = "white"
+                document.getElementById("hard").style.color = "white"
+                
+                str2.value = "EASY"
+            }
+            function changeMedium(){
+                const str2 = document.getElementById("difficulty")
+                document.getElementById("easy").style.color = "white"
+                document.getElementById("medium").style.color = "yellow"
+                document.getElementById("hard").style.color = "white"
+                
+                str2.value = "MEDIUM"
+            }
+            function changeHard(){
+                const str2 = document.getElementById("difficulty")
+                document.getElementById("easy").style.color = "white"
+                document.getElementById("medium").style.color = "white"
+                document.getElementById("hard").style.color = "red"
+                
+                str2.value = "HARD"
+            }
+            function sortTable(n) {
+              var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+              table = document.getElementById("leaderboardTable");
+              switching = true;
+              // Set the sorting direction to ascending:
+              dir = "asc"; 
+              /* Make a loop that will continue until
+              no switching has been done: */
+              while (switching) {
+                // Start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /* Loop through all table rows (except the
+                first, which contains table headers): */
+                for (i = 1; i < (rows.length - 1); i++) {
+                  // Start by saying there should be no switching:
+                  shouldSwitch = false;
+                  /* Get the two elements you want to compare,
+                  one from current row and one from the next: */
+                  x = rows[i].getElementsByTagName("TD")[n];
+                  y = rows[i + 1].getElementsByTagName("TD")[n];
+                  /* Check if the two rows should switch place,
+                  based on the direction, asc or desc: */
+                  if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                      // If so, mark as a switch and break the loop:
+                      shouldSwitch = true;
+                      break;
+                    }
+                  } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                      // If so, mark as a switch and break the loop:
+                      shouldSwitch = true;
+                      break;
+                    }
+                  }
+                }
+                if (shouldSwitch) {
+                  /* If a switch has been marked, make the switch
+                  and mark that a switch has been done: */
+                  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                  switching = true;
+                  // Each time a switch is done, increase this count by 1:
+                  switchcount ++; 
+                } else {
+                  /* If no switching has been done AND the direction is "asc",
+                  set the direction to "desc" and run the while loop again. */
+                  if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                  }
+                }
+              }
+            }
+        </script>
+    
+    </head>
+    <body>
+        <div id="NavBar">
+            <img src="Logo2.png" style="height:100%;text-align: center; display: inline-block;float: left;">
+            
+            <form id="Leaderboards" method="post" action="admin_Leaderboards">
+                <input type="submit" value="Leaderboards" id="leaderboardButton">
+            </form>
+            
+            <form id="Users" method="post" action="admin_Users">
+                <input type="submit" value="Users">
+            </form>
+            
+            <form id="Words" method="post" action="admin_Words">
+                <input type="submit" value="Words" style="color:red">
+            </form>
+            
+            <form id="Logout" action="logout" method="post">
+                <p1>Logged in as: {{us}}</p1>
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+            
+        <div id="space"></div>
+        <div id="inputDiv">
+            <form id="AddWords" action="AddWords" method="post">
+                    <input type="text" placeholder="Input Text" name="Admin_text" id="Admin_text">
+                
+                    <input type="button" value="EASY" id="easy" onclick="changeEasy()">
+                    <input type="button" value="MEDIUM" id="medium" onclick="changeMedium()">
+                    <input type="button" value="HARD" id="hard" onclick="changeHard()">
+                
+                    <input type="hidden" name="difficulty" id="difficulty"> 
+                    <input type="submit" value="Add New Text">
+            </form>  
+        </div>
+        
+        <div id="UserDashboard">
+                <table style="text-align: center; width: 100%;" id="leaderboardTable">
+                        <tbody>
+                            <tr>
+                                <th onclick="sortTable(0)">Tier</th>
+                                <th >Text</th>
+                                <th >Action</th>
+                            </tr>
+                            {{#each data}}
+                            <tr>
+                                <td>{{difficulty}}</td>
+                                <td>{{text}}</td>
+                                <td>
+                                    <form id="User" action="deleteWords" method="post" style="display:inline">
+                                        <input type="hidden" name="difficulty_Del" id="us_Del" value="{{difficulty}}">
+                                        <input type="hidden" name="text_Del" id="password_Del" value="{{text}}">
+                                        <input type="submit" value="Delete">
+                                    </form>
+                                </td>
+                            </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>    
+                <br>
+        </div>
+    </body>
+</html>
