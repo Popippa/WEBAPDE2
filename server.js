@@ -19,7 +19,7 @@ app.use(session({
 }))
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://fan34:can34@type-racer-mli3n.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://christian:kurumi1!>@cluster0-mb2z2.gcp.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser:true,
     useFindAndModify: false
 })
