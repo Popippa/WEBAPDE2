@@ -345,6 +345,7 @@ app.post("/deleteWords", urlencoder, (req,res)=>{
 })
 
 app.post("/admin_Users", urlencoder, (req,res)=>{
+    
     User.find({}).exec(function(err,user){
                 res.render(__dirname + "/views/Admin_Users.hbs",{
                     us:"admin",
