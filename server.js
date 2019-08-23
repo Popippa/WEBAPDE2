@@ -52,7 +52,7 @@ app.get("/", (req, res)=>{
         });
     }
     else{
-        res.render("MainPage.hbs", {
+        res.render("/views/MainPage.hbs", {
             us: "Guest"
         })
     }
