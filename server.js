@@ -8,6 +8,7 @@ const url = require("url")
 
 const app = express()
 app.use(express.static('public'))
+app.use(express.static('views'))
 app.use(session({
     resave: true,
     name:"webapdesecret",
@@ -19,9 +20,10 @@ app.use(session({
 }))
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://christian:tokisaki@cluster0-qjj0u.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://fan34:can34@type-racer-mli3n.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser:true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    dbName:"mark"
 })
 
 //Get the default connection
