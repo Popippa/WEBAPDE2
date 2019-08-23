@@ -8,7 +8,6 @@ const url = require("url")
 
 const app = express()
 app.use(express.static('public'))
-app.use(express.static('views'))
 app.use(session({
     resave: true,
     name:"webapdesecret",
