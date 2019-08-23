@@ -51,8 +51,7 @@ app.get("/", (req, res)=>{
         });
     }
     else{
-        res.render("MainPage.hbs", {
-        })
+        res.sendFile(__dirname+"/views/MainPage.html")
     }
 })
 app.post("/startGameUser",urlencoder, (req,res)=>{
