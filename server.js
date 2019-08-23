@@ -8,7 +8,6 @@ const url = require("url")
 
 const app = express()
 app.use(express.static('public'))
-app.use(express.static(__dirname + '/public'))
 app.use(session({
     resave: true,
     name:"webapdesecret",
@@ -19,10 +18,8 @@ app.use(session({
     }
 }))
 
-app.set("view engine", "hbs")
-
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://fan34:can34@type-racer-mli3n.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://christian:tokisaki@cluster0-qjj0u.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser:true,
     useFindAndModify: false
 })
@@ -73,7 +70,9 @@ app.post("/startGame",urlencoder, (req,res)=>{
     req.session.difficulty = txt
     if(txt == null){
         score.find({}).exec(function(err,scores){
-        res.render("MainPage.hbs")
+        res.render(__dirname + "/views/MainPage.hbs",{
+                data :scores
+            })
         })
     }
     else{
@@ -109,7 +108,9 @@ app.post("/login", urlencoder, (req,res)=>{
             if(!user.length){
                 console.log("User not Match")
                 score.find({}).exec(function(err,scores){
-                res.render("MainPage.hbs")
+                res.render(__dirname + "/views/MainPage.hbs",{
+                    data :scores
+                    })
                 })
             }
             else{
@@ -141,7 +142,9 @@ app.post("/signup", urlencoder, (req,res)=>{
                 NewUser.save().then((doc)=>{
                     console.log(doc)
                     score.find({}).exec(function(err,scores){
-                    res.render("MainPage.hbs")
+                    res.render(__dirname + "/views/MainPage.hbs",{
+                        data :scores
+                        })
                     })
                 }, (err)=>{ 
                     res.send(err)
@@ -150,7 +153,9 @@ app.post("/signup", urlencoder, (req,res)=>{
             else if(user.length){
                 console.log("Username Taken")
                 score.find({}).exec(function(err,scores){
-                res.render("MainPage.hbs")
+                res.render(__dirname + "/views/MainPage.hbs",{
+                    data :scores
+                    })
                 })
             }
         }
@@ -211,7 +216,7 @@ app.post("/BackToMain", urlencoder, (req,res)=>{
         })
     }
     else{
-        res.render("MainPage.hbs")
+        res.render(__dirname + "/views/MainPage.hbs")
     }
 })
 
@@ -393,7 +398,9 @@ app.post("/savescore", urlencoder, (req,res)=>{
     }
     else if(req.session.un == null){
          score.find({}).exec(function(err,scores){
-              res.render("MainPage.hbs")
+              res.render(__dirname + "/views/MainPage.hbs",{
+                   data: scores
+                   })
          })
     }
     req.session.difficulty = null
