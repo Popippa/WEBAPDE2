@@ -19,7 +19,7 @@ app.use(session({
 }))
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://christian:kurumi1!>@cluster0-mb2z2.gcp.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://christian:tokisaki@cluster0-qjj0u.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser:true,
     useFindAndModify: false
 })
@@ -406,7 +406,6 @@ app.post("/savescore", urlencoder, (req,res)=>{
     req.session.difficulty = null
 })
 
-var port = process.env.PORT || 3000
-app.listen(port, ()=>{
-    console.log("live at port 3000")
+
+app.listen(process.env.PORT || 3000)
 
