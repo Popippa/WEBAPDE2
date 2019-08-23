@@ -51,7 +51,7 @@ app.get("/", (req, res)=>{
         });
     }
     else{
-        res.sendFile(__dirname+"/views/MainPage.html")
+        res.render("MainPage.hbs")
     }
 })
 app.post("/startGameUser",urlencoder, (req,res)=>{
@@ -71,9 +71,7 @@ app.post("/startGame",urlencoder, (req,res)=>{
     req.session.difficulty = txt
     if(txt == null){
         score.find({}).exec(function(err,scores){
-        res.render(__dirname + "/views/MainPage.hbs",{
-                data :scores
-            })
+        res.render("MainPage.hbs")
         })
     }
     else{
@@ -109,9 +107,7 @@ app.post("/login", urlencoder, (req,res)=>{
             if(!user.length){
                 console.log("User not Match")
                 score.find({}).exec(function(err,scores){
-                res.render(__dirname + "/views/MainPage.hbs",{
-                    data :scores
-                    })
+                res.render("MainPage.hbs")
                 })
             }
             else{
@@ -143,9 +139,7 @@ app.post("/signup", urlencoder, (req,res)=>{
                 NewUser.save().then((doc)=>{
                     console.log(doc)
                     score.find({}).exec(function(err,scores){
-                    res.render(__dirname + "/views/MainPage.hbs",{
-                        data :scores
-                        })
+                    res.render("MainPage.hbs")
                     })
                 }, (err)=>{ 
                     res.send(err)
@@ -154,9 +148,7 @@ app.post("/signup", urlencoder, (req,res)=>{
             else if(user.length){
                 console.log("Username Taken")
                 score.find({}).exec(function(err,scores){
-                res.render(__dirname + "/views/MainPage.hbs",{
-                    data :scores
-                    })
+                res.render("MainPage.hbs")
                 })
             }
         }
@@ -217,7 +209,7 @@ app.post("/BackToMain", urlencoder, (req,res)=>{
         })
     }
     else{
-        res.render(__dirname + "/views/MainPage.hbs")
+        res.render("MainPage.hbs")
     }
 })
 
@@ -399,9 +391,7 @@ app.post("/savescore", urlencoder, (req,res)=>{
     }
     else if(req.session.un == null){
          score.find({}).exec(function(err,scores){
-              res.render(__dirname + "/views/MainPage.hbs",{
-                   data: scores
-                   })
+              res.render("MainPage.hbs")
          })
     }
     req.session.difficulty = null
