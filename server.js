@@ -18,8 +18,7 @@ app.use(session({
     }
 }))
 
-app.set('views', path.join(__dirname, 'views/'))
-app.set('view engine', 'hbs')
+app.set("view engine", "hbs")
 
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb+srv://fan34:can34@type-racer-mli3n.mongodb.net/test?retryWrites=true&w=majority", {
