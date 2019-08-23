@@ -52,7 +52,9 @@ app.get("/", (req, res)=>{
         });
     }
     else{
-        res.render("MainPage.hbs")
+        res.render("MainPage.hbs", {
+            us: "Guest"
+        })
     }
 })
 app.post("/startGameUser",urlencoder, (req,res)=>{
