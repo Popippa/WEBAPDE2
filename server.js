@@ -18,6 +18,7 @@ app.use(session({
     }
 }))
 
+app.engine('hbs')
 app.set('view engine', 'hbs')
 
 mongoose.Promise = global.Promise
